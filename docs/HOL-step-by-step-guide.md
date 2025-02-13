@@ -1,10 +1,11 @@
 # 関数アプリの作成と展開
-
-<img src="images/mcw-exercise-1.png" />
-
 ### Task 0: Git の準備
 
-後ほど記載する
+- 本リポジトリのクローン
+- Azure Account
+- Python 3.11 が利用可能な環境
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [Azure Function core tool](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=windows%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-python)
 
 ### Task 1: Azure SQL の作成
 
@@ -36,7 +37,7 @@
   <img src="../images/t1-06.png" />
 
 - [追加設定] タブにある [データ ソース] セクションの [既存のデータを使用します] で、 [サンプル] を選択
-- サンプル データセット AdventureWorksLT から作成
+- サンプル データセット AdventureWorksLT を作成可能
 
   <img src="../images/t1-07.png" />
 
@@ -52,7 +53,7 @@
 
   <img src="../images/t1-10.png" />
 
-- 以下のクエリを実行
+- サンプルデータを作成した場合は以下のクエリを実行
 
 ```sql
 SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName
@@ -63,20 +64,31 @@ ON pc.productcategoryid = p.productcategoryid;
 
   <img src="../images/t1-11.png" />
 
+
+- テーブルを作成する
+```sql
+CREATE TABLE dbo.ToDo (
+    [Id] UNIQUEIDENTIFIER PRIMARY KEY,
+    [order] INT NULL,
+    [title] NVARCHAR(200) NOT NULL,
+    [url] NVARCHAR(200) NOT NULL,
+    [completed] BIT NOT NULL
+);
+```
+
 ### Task 2: 関数アプリの作成
 
 - Azure ポータルの検索窓から **関数アプリ** と検索し関数アプリをクリック
-
-  <img src="../images/t2-01.png" />
-
 - **関数アプリ** の **作成** をクリック
-
-  <img src="../images/t2-02.png" />
-
 - 関数アプリの作成
 
   <img src="../images/t2-03.png" />
 
+- 関数アプリ名を設定、ランタイム スタックは Python、バージョンは 3.11 を選択
+  <img src="../images/t2-04.png" />
+
+- **作成** をクリック
+  <img src="../images/t2-05.png" />
 
 <br />
 
@@ -99,55 +111,29 @@ ON pc.productcategoryid = p.productcategoryid;
 - プロジェクト ファイルのディレクトリへ移動
 
   ```
-  func init --worker-runtime python
-  ```
-
-
-  ```
   func azure functionapp publish <作成した関数アプリ名> --python
   ```
 
   - デプロイが正常に終了したことを確認
 
-    <img src="../images/deploy-function-02.png" />
+    <img src="../images/t3-01.png" />
 
   <br />
 
 ### Task 4: 関数アプリの構成
 
-- Azure ポータルで SQL Database (AdventureWorksLT) の管理ブレードを表示
+- Azure Portal から Azure SQL Server のページを開き、[セキュリティ] で [ネットワーク] を選択します。 [Azure サービスとリソースにこのサーバーへのアクセスを許可する] の例外を確認
 
-  - **接続文字列** を選択し **ODBC (Node.js を含む) (SQL 認証)** の接続文字列をコピーし、メモ帳などのテキスト エディターに貼り付け
+    <img src="../images/t4-01.png" />
 
-    <img src="../images/sql-connection-string-python.png" />
+- Azure Portal から Azure SQL のページを開き、[設定] の [接続文字列] を選択する
+- SQL 認証用の ADO.NET 接続文字列をコピー
 
-  - **{your_password}** を SQL Database への認証で使用するアカウントのパスワードに変更
+    <img src="../images/t4-03.png" />
 
-  - **接続文字列の冒頭 Driver={ODBC Driver 18 for SQL Server} を Driver={ODBC Driver 17 for SQL Server} に変更してください。**
+- 接続文字列を追加
 
-            ※ 後の手順で使用するためコピー
-
-- Azure Functions の管理ブレードへ移動
-
-- **構成** メニューを選択、**＋ 新しいアプリケーション設定** をクリック
-
-  <img src="../images/function-configuration-01.png" />
-
-- アプリケーション設定の追加/編集画面で、追加する構成の名前、値を入力し **OK** をクリック
-
-  - **名前**: SqlConnectionString
-
-  - **値**: SQL Database への接続文字列
-
-    - **注意** : Python の場合、接続文字列の冒頭 **Driver={ODBC Driver 18 for SQL Server}** を **Driver={ODBC Driver 17 for SQL Server}** に変更してください。
-
-    <img src="../images/function-configuration-02.png" />
-
-- **保存** をクリック
-
-  <img src="../images/function-configuration-03.png" />
-
-- **変更の保存** の確認メッセージが表示されるので **続行** をクリック
+    <img src="../images/t4-04.png" />
 
 <br />
 
@@ -155,11 +141,11 @@ ON pc.productcategoryid = p.productcategoryid;
 
 - Web ブラウザーを起動、アドレス バーに関数アプリの展開時に出力された URL を貼り付け
 
-- ?id=xx (xx は数字、5, 7, 10, 22, 27, 35 の間で指定) を付与して実行
+- ?name=xx (任意の名前) を付与して実行
 
-  <img src="../images/function-result-01.png" />
+  <img src="../images/t5-01.png.png" />
 
-  ※ データベースから取得したレコードを表示
+- データベースに接続して、dbo.ToDo テーブルを右クリックし、[上位 1000 行を選択] をクリックして確認
 
 <br />
 
