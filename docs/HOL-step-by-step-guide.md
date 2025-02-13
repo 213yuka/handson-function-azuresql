@@ -143,7 +143,7 @@ CREATE TABLE dbo.ToDo (
 
 - ?name=xx (任意の名前) を付与して実行
 
-  <img src="../images/t5-01.png.png" />
+  <img src="../images/t5-01.png" />
 
 - データベースに接続して、dbo.ToDo テーブルを右クリックし、[上位 1000 行を選択] をクリックして確認
 
