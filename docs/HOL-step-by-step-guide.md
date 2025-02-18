@@ -102,17 +102,17 @@ CREATE TABLE dbo.ToDo (
 
 - 関数を追加
 
-```
-func new --template "Http Trigger" --name MyHttpTrigger
-```
+  ```
+  func new --template "Http Trigger" --name MyHttpTrigger
+  ```
 
 - VScodeを開く
 
-```
-code .
-```
+  ```
+  code .
+  ```
 
-- function_app.py を本リポジトリの src\function_app.py に変更する
+- function_app.py を本リポジトリの (function_app.py)[../src/function_app.py] に変更する
 
 - **Terminal** - **New Terminal** を選択し、ターミナルを表示
 
