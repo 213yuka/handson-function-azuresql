@@ -136,8 +136,6 @@ CREATE TABLE dbo.ToDo (
 
   - デプロイが正常に終了したことを確認
 
-    <img src="../images/t3-01.png" />
-
   <br />
   
 ### Task 4: 関数アプリの構成
