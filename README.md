@@ -1,2 +1,2 @@
 # handson-function-azuresql
-[手順](docs\HOL-step-by-step-guide.md)
+[手順](./docs/HOL-step-by-step-guide.md)
