@@ -1,7 +1,8 @@
 # 関数アプリの作成と展開
 ### Task 0: Git の準備
 
-- 本リポジトリのクローン
+- [Azure PowerShell](https://learn.microsoft.com/ja-jp/powershell/azure/install-az-ps?view=azps-0.10.0)
+- Azure Account
 - Azure Account
 - Python 3.11 が利用可能な環境
 - [Visual Studio Code](https://code.visualstudio.com/download)
