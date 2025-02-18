@@ -1,10 +1,9 @@
 # 関数アプリの作成と展開
-### Task 0: Git の準備
+### Task 0: 事前準備
 
 - [Azure PowerShell](https://learn.microsoft.com/ja-jp/powershell/azure/install-az-ps?view=azps-0.10.0)
 - Azure Account
-- Azure Account
-- Python 3.11 が利用可能な環境
+- Python 3.11
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Azure Function core tool](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=windows%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-python)
 
