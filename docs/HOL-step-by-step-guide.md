@@ -112,7 +112,7 @@ CREATE TABLE dbo.ToDo (
   code .
   ```
 
-- function_app.py を本リポジトリの (function_app.py)[../src/function_app.py] に変更する
+- function_app.py を本リポジトリにあるfunction_app.pyに変更する
 
 - **Terminal** - **New Terminal** を選択し、ターミナルを表示
 
