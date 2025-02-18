@@ -94,14 +94,34 @@ CREATE TABLE dbo.ToDo (
 
 ### Task 3: Visual Studio Code からのデプロイ
 
+- ローカルプロジェクトを作成
+
+  ```
+  func init --python
+  ```
+
+- 関数を追加
+
+```
+func new --template "Http Trigger" --name MyHttpTrigger
+```
+
+- VScodeを開く
+
+```
+code .
+```
+
+- function_app.py を本リポジトリの src\function_app.py に変更する
+
 - **Terminal** - **New Terminal** を選択し、ターミナルを表示
 
   <img src="../images/t3-01.png" />
 
-- az login コマンドを実行
+- Connect-AzAccount コマンドを実行
 
   ```
-  az login
+  Connect-AzAccount
   ```
 
   Web ブラウザーが起動、サインイン画面が表示されるのでサインインを実行
@@ -111,7 +131,7 @@ CREATE TABLE dbo.ToDo (
 - プロジェクト ファイルのディレクトリへ移動
 
   ```
-  func azure functionapp publish <作成した関数アプリ名> --python
+  func azure functionapp publish <作成した関数アプリ名>
   ```
 
   - デプロイが正常に終了したことを確認
@@ -119,7 +139,7 @@ CREATE TABLE dbo.ToDo (
     <img src="../images/t3-01.png" />
 
   <br />
-
+  
 ### Task 4: 関数アプリの構成
 
 - Azure Portal から Azure SQL Server のページを開き、[セキュリティ] で [ネットワーク] を選択します。 [Azure サービスとリソースにこのサーバーへのアクセスを許可する] の例外を確認

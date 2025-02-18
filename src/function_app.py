@@ -1,17 +1,15 @@
 import azure.functions as func
-import logging
-import os
-import pyodbc
-import product as p
+import datetime
 import json
 import logging
-from azure.functions.decorators.core import DataType
 import uuid
+from azure.functions.decorators.core import DataType
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
+
 @app.route(route="InsertName")
 @app.generic_output_binding(arg_name="toDoItems", type="sql", CommandText="dbo.ToDo", ConnectionStringSetting="SqlConnectionString",data_type=DataType.STRING)
-def test_function(req: func.HttpRequest, toDoItems: func.Out[func.SqlRow]) -> func.HttpResponse:
+def HTTPExample(req: func.HttpRequest, toDoItems: func.Out[func.SqlRow]) -> func.HttpResponse:
     logging.info("Python HTTP trigger function processed a request.")
     name = req.params.get("name")
     if not name:
